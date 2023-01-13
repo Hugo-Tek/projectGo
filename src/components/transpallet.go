@@ -6,8 +6,9 @@ import (
 )
 
 type Pallet struct {
-	Name string
-	X, Y int
+	Name   string
+	X, Y   int
+	Status string
 }
 
 func CreatePallet(parts []string, pallets []Pallet) []Pallet {
@@ -19,7 +20,7 @@ func CreatePallet(parts []string, pallets []Pallet) []Pallet {
 	if ret != 0 {
 		return pallets
 	}
-	p := Pallet{Name: parts[0], X: x, Y: y}
+	p := Pallet{Name: parts[0], X: x, Y: y, Status: "WAIT"}
 	pallets = append(pallets, p)
 	return pallets
 }
