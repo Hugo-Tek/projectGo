@@ -20,5 +20,10 @@ func main() {
 	scanner := bufio.NewScanner(file)
 	scanner.Scan()
 
-	_, _, _, _ = src.Parser(file, scanner)
+	warehouse, ret := src.Parser(file, scanner)
+	if ret == 1 {
+		return
+	}
+	warehouse = src.FillGrid(warehouse)
+	src.PrintGrid(warehouse)
 }
