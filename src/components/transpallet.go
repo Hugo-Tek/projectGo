@@ -6,10 +6,11 @@ import (
 )
 
 type Pallet struct {
-	Name   string
-	X, Y   int
-	Status string
-	Parcel []Parcel
+	Name      string
+	X, Y      int
+	Status    string
+	Parcel    []Parcel
+	isCharged bool
 }
 
 func CreatePallet(parts []string, pallets []Pallet) []Pallet {
@@ -21,7 +22,7 @@ func CreatePallet(parts []string, pallets []Pallet) []Pallet {
 	if ret != 0 {
 		return pallets
 	}
-	p := Pallet{Name: parts[0], X: x, Y: y, Status: "WAIT", Parcel: []Parcel{}}
+	p := Pallet{Name: parts[0], X: x, Y: y, Status: "WAIT", Parcel: []Parcel{}, isCharged: false}
 	pallets = append(pallets, p)
 	return pallets
 }

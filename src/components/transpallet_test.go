@@ -28,7 +28,7 @@ func TestCreatePalletErrorPart2(t *testing.T) {
 func TestCreatePalletSuccess(t *testing.T) {
 	parts := []string{"P1", "10", "20"}
 	pallets := []Pallet{}
-	expectedPallets := []Pallet{{"P1", 10, 20, "WAIT", []Parcel{}}}
+	expectedPallets := []Pallet{{"P1", 10, 20, "WAIT", []Parcel{}, false}}
 	resultPallets := CreatePallet(parts, pallets)
 	if !reflect.DeepEqual(resultPallets, expectedPallets) {
 		t.Errorf("CreatePallet(%v, %v) = %v, expected %v", parts, pallets, resultPallets, expectedPallets)
