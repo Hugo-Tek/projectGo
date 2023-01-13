@@ -8,9 +8,50 @@ func PalletIsInLoadingZone(pallet components.Pallet, truck components.Truck) boo
 	return IsAdjacent(pallet.X, pallet.Y, truck.X, truck.Y)
 }
 
-func IsLoading(pallet components.Pallet, truck components.Truck) string {
-	if PalletIsInLoadingZone(pallet, truck) {
-		return "chargé"
+func CheckMaxLoad(truck components.Truck, weight int) bool {
+	return truck.CurrentLoad+weight < truck.MaxLoad
+}
+
+func Charging(parcel components.Parcel, truck components.Truck) {
+	var weight int = 0
+
+	switch parcel.Color {
+	case "YELLOW":
+		weight = 100
+	case "GREEN":
+		weight = 200
+	case "BLUE":
+		weight = 500
 	}
-	return "non chargé"
+
+	if CheckMaxLoad(truck, weight) {
+		truck.CurrentLoad += weight
+	} else {
+		truck.Status = "GONE"
+	}
+}
+
+func IsLoading(pallet components.Pallet, truck components.Truck) {
+	if PalletIsInLoadingZone(pallet, truck) && pallet.IsCharged {
+		if pallet.Status == "WAIT" {
+			pallet.Status = "LEAVE"
+			Charging(pallet.Parcel, truck)
+		} else if pallet.Status == "LEAVE" {
+			pallet.Parcel = components.Parcel{}
+			pallet.IsCharged = false
+			pallet.Status = "WAIT"
+		}
+	}
+}
+
+func ManageTruck(pallet components.Pallet, truck components.Truck, gone int) {
+	if truck.Status != "GONE" {
+		IsLoading(pallet, truck)
+	} else {
+		gone++
+		if gone == truck.Availability {
+			truck.Status = "WAITING"
+			gone = 0
+		}
+	}
 }
