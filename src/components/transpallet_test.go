@@ -7,7 +7,7 @@ import (
 
 func TestCreatePalletErrorPart1(t *testing.T) {
 	// Test conversion error for parts[1]
-	parts := []string{"P1", "invalid", "20", ""}
+	parts := []string{"P1", "invalid", "20"}
 	pallets := []Pallet{}
 	resultPallets := CreatePallet(parts, pallets)
 	if !reflect.DeepEqual(resultPallets, pallets) {
@@ -17,7 +17,7 @@ func TestCreatePalletErrorPart1(t *testing.T) {
 
 func TestCreatePalletErrorPart2(t *testing.T) {
 	// Test conversion error for parts[2]
-	parts := []string{"P1", "10", "invalid", ""}
+	parts := []string{"P1", "10", "invalid"}
 	pallets := []Pallet{}
 	resultPallets := CreatePallet(parts, pallets)
 	if !reflect.DeepEqual(resultPallets, pallets) {
@@ -26,9 +26,9 @@ func TestCreatePalletErrorPart2(t *testing.T) {
 }
 
 func TestCreatePalletSuccess(t *testing.T) {
-	parts := []string{"P1", "10", "20", ""}
+	parts := []string{"P1", "10", "20"}
 	pallets := []Pallet{}
-	expectedPallets := []Pallet{{"P1", 10, 20, "WAIT"}}
+	expectedPallets := []Pallet{{"P1", 10, 20, "WAIT", []Parcel{}}}
 	resultPallets := CreatePallet(parts, pallets)
 	if !reflect.DeepEqual(resultPallets, expectedPallets) {
 		t.Errorf("CreatePallet(%v, %v) = %v, expected %v", parts, pallets, resultPallets, expectedPallets)

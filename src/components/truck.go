@@ -11,6 +11,7 @@ type Truck struct {
 	MaxLoad      int
 	Availability int
 	Status       string
+	CurrentLoad  int
 }
 
 func CreateTruck(parts []string, trucks []Truck) []Truck {
@@ -24,10 +25,11 @@ func CreateTruck(parts []string, trucks []Truck) []Truck {
 	availability, err := strconv.Atoi(parts[4])
 	ret += errors.Check(err)
 	Status := "WAITING"
+	Load := 0
 	if ret != 0 {
 		return trucks
 	}
-	t := Truck{Name: parts[0], X: x, Y: y, MaxLoad: maxLoad, Availability: availability, Status: Status}
+	t := Truck{Name: parts[0], X: x, Y: y, MaxLoad: maxLoad, Availability: availability, Status: Status, CurrentLoad: Load}
 	trucks = append(trucks, t)
 	return trucks
 }
