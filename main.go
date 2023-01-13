@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"projectGo/src"
 	"projectGo/src/errors"
@@ -26,4 +27,11 @@ func main() {
 	}
 	warehouse = src.FillGrid(warehouse)
 	src.PrintGrid(warehouse)
+	gone := 0
+	for turn := 0; turn < warehouse.Turns; turn++ {
+		gone = src.ManageTruck(warehouse, gone)
+		fmt.Println(warehouse.Pallets)
+		src.MovePallets(warehouse)
+		fmt.Println(warehouse.Trucks)
+	}
 }
