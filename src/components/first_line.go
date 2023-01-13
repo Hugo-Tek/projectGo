@@ -12,7 +12,6 @@ func ParseFirstLine(scanner *bufio.Scanner) (int, int, int, int) {
 	line := scanner.Text()
 	parts := strings.Split(line, " ")
 	ret := 0
-	fmt.Print(parts)
 	if len(parts) != 3 {
 		fmt.Println("Erreur de format: première ligne doit avoir 3 éléments")
 		ret = 1

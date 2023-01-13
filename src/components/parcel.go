@@ -23,7 +23,6 @@ func CreatePackage(parts []string, parcels []Parcel) []Parcel {
 		return parcels
 	}
 	color := strings.ToUpper(parts[3])
-	fmt.Printf("Color: %s\n", color)
 	if color != "GREEN" && color != "YELLOW" && color != "BLUE" {
 		fmt.Println("Erreur de format: couleur de colis non valide")
 	} else {
