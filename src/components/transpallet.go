@@ -9,8 +9,8 @@ type Pallet struct {
 	Name      string
 	X, Y      int
 	Status    string
-	Parcel    []Parcel
-	isCharged bool
+	Parcel    Parcel
+	IsCharged bool
 }
 
 func CreatePallet(parts []string, pallets []Pallet) []Pallet {
@@ -22,7 +22,7 @@ func CreatePallet(parts []string, pallets []Pallet) []Pallet {
 	if ret != 0 {
 		return pallets
 	}
-	p := Pallet{Name: parts[0], X: x, Y: y, Status: "WAIT", Parcel: []Parcel{}, isCharged: false}
+	p := Pallet{Name: parts[0], X: x, Y: y, Status: "WAIT", Parcel: Parcel{}, IsCharged: false}
 	pallets = append(pallets, p)
 	return pallets
 }
