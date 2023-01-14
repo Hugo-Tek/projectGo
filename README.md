@@ -19,7 +19,7 @@ sudo apt-get install golang
 
 ### Compilation de notre projet
 
-Pour exécuter notre programme il suffit d'écrire ```go run main.go``` suivi du nom du fichier que vous voulez passer en paramètre par exemple ```file.txt```.
+Pour exécuter notre programme il suffit d'écrire ```go run main.go``` et avoir à la racine un fichier nommé ```file.txt``` qui sera lui même parsé.
 
 ### Description du fichier en entrée
 
