@@ -1,3 +1,4 @@
+// Package components provides main function on components files
 package components
 
 import (
@@ -5,24 +6,28 @@ import (
 	"strconv"
 )
 
-type Pallet struct {
-	Name      string
-	X, Y      int
-	Status    string
-	Parcel    Parcel
-	IsCharged bool
+// PalletTruck struct
+type PalletTruck struct {
+	Name           string
+	X, Y           int
+	Status         string
+	CurrentParcel  Parcel
+	OnHisWayParcel Parcel
+	IsCharged      bool
+	IsOnHisWay     bool
 }
 
-func CreatePallet(parts []string, pallets []Pallet) []Pallet {
+// CreatePallet func to init/create pallet truck
+func CreatePallet(parts []string, palletTruck []PalletTruck) []PalletTruck {
 	ret := 0
 	x, err := strconv.Atoi(parts[1])
 	ret += errors.Check(err)
 	y, err := strconv.Atoi(parts[2])
 	ret += errors.Check(err)
 	if ret != 0 {
-		return pallets
+		return palletTruck
 	}
-	p := Pallet{Name: parts[0], X: x, Y: y, Status: "WAIT", Parcel: Parcel{}, IsCharged: false}
-	pallets = append(pallets, p)
-	return pallets
+	p := PalletTruck{Name: parts[0], X: x, Y: y, Status: "WAIT", CurrentParcel: Parcel{}, IsCharged: false}
+	palletTruck = append(palletTruck, p)
+	return palletTruck
 }
