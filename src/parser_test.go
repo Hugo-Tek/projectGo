@@ -1,10 +1,9 @@
+// Package src provides main function on src files
 package src
 
 import (
 	"bufio"
 	"fmt"
-	"io/ioutil"
-	"log"
 	"os"
 	"testing"
 )
@@ -72,18 +71,18 @@ func (errorReader) Read(p []byte) (int, error) {
 	return 0, fmt.Errorf("test error")
 }
 
-func createTestFile(name, contents string) *os.File {
-	tmpfile, err := ioutil.TempFile("", name)
-	if err != nil {
-		log.Fatal(err)
-	}
+// func createTestFile(name, contents string) *os.File {
+// 	tmpfile, err := ioutil.TempFile("", name)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
 
-	if _, err := tmpfile.Write([]byte(contents)); err != nil {
-		log.Fatal(err)
-	}
+// 	if _, err := tmpfile.Write([]byte(contents)); err != nil {
+// 		log.Fatal(err)
+// 	}
 
-	if _, err := tmpfile.Seek(0, 0); err != nil {
-		log.Fatal(err)
-	}
-	return tmpfile
-}
+// 	if _, err := tmpfile.Seek(0, 0); err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	return tmpfile
+// }

@@ -1,3 +1,4 @@
+// Package components provides main function on components files
 package components
 
 import (

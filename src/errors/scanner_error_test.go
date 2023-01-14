@@ -1,3 +1,4 @@
+// Package errors provides main function on errors files
 package errors
 
 import (
