@@ -1,3 +1,4 @@
+// Package main provides the main function with a loop
 package main
 
 import (
@@ -5,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"projectGo/src"
+	"projectGo/src/components"
 	"projectGo/src/errors"
 )
 
@@ -26,12 +28,16 @@ func main() {
 		return
 	}
 	warehouse = src.FillGrid(warehouse)
-	src.PrintGrid(warehouse)
-	gone := 0
-	for turn := 0; turn < warehouse.Turns; turn++ {
-		gone = src.ManageTruck(warehouse, gone)
-		fmt.Println(warehouse.Pallets)
-		src.MovePallets(warehouse)
-		fmt.Println(warehouse.Trucks)
+	for turn := 1; turn <= warehouse.Turns; turn++ {
+		fmt.Printf("\nTurn %d\n", turn)
+		src.PrintGrid(warehouse)
+
+		src.MovePalletTrucks(warehouse)
+		src.ManageTrucks(warehouse)
+		if components.CountingParcels(warehouse) == 0 {
+			fmt.Println("😎")
+			return
+		}
 	}
+	fmt.Println("🙂")
 }
