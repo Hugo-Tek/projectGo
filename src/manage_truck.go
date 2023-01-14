@@ -25,7 +25,6 @@ func Charging(warehouse *components.Warehouse, palletTruck *components.PalletTru
 
 	if checkMaxLoad(truck, weight) {
 		fmt.Println(palletTruck.Name, "LEAVE", palletTruck.CurrentParcel.Name, palletTruck.CurrentParcel.Color)
-
 		truck.CurrentLoad += weight
 		palletTruck.IsCharged = false
 		palletTruck.Status = "LEAVE"
@@ -38,7 +37,7 @@ func Charging(warehouse *components.Warehouse, palletTruck *components.PalletTru
 }
 
 func manageTruck(warehouse *components.Warehouse, truck *components.Truck) {
-	if truck.Status != "GONE" && truck.CurrentLoad != truck.MaxLoad && components.CountingParcels(warehouse) == 0 {
+	if truck.Status != "GONE" && truck.CurrentLoad != truck.MaxLoad && components.CountingParcels(warehouse) != 0 {
 		fmt.Printf("%s WAITING %d/%d\n", truck.Name, truck.CurrentLoad, truck.MaxLoad)
 	} else {
 		fmt.Printf("%s GONE %d/%d\n", truck.Name, truck.CurrentLoad, truck.MaxLoad)

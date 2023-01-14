@@ -31,7 +31,6 @@ func main() {
 	for turn := 1; turn <= warehouse.Turns; turn++ {
 		fmt.Printf("\nTurn %d\n", turn)
 		src.PrintGrid(warehouse)
-
 		src.MovePalletTrucks(warehouse)
 		src.ManageTrucks(warehouse)
 		if components.CountingParcels(warehouse) == 0 {
