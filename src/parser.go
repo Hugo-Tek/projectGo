@@ -1,3 +1,4 @@
+// Package src provides main function on src files
 package src
 
 import (
@@ -14,12 +15,13 @@ func Parser(file *os.File, scanner *bufio.Scanner) (*components.Warehouse, int) 
 	width, height, turns, ret := components.ParseFirstLine(scanner)
 
 	if ret == 1 {
+		fmt.Println("😱")
 		return nil, ret
 	}
 
 	// Initializes tabs to store parcels, pallet trucks and trucks
 	var parcels []components.Parcel
-	var pallets []components.Pallet
+	var PalletTruck []components.PalletTruck
 	var trucks []components.Truck
 	grid := make([][]int, height)
 	for i := range grid {
@@ -33,16 +35,17 @@ func Parser(file *os.File, scanner *bufio.Scanner) (*components.Warehouse, int) 
 		if len(parts) == 4 {
 			parcels = components.CreatePackage(parts, parcels)
 		} else if len(parts) == 3 {
-			pallets = components.CreatePallet(parts, pallets)
+			PalletTruck = components.CreatePallet(parts, PalletTruck)
 		} else if len(parts) == 5 {
 			trucks = components.CreateTruck(parts, trucks)
 		} else {
 			fmt.Println("Erreur de format: ligne non reconnue")
+			fmt.Println("😱")
 			return nil, 1
 		}
 		if errors.ScannerError(scanner) == 1 {
 			return nil, 1
 		}
 	}
-	return components.InitWarehouse(width, height, turns, parcels, pallets, trucks, grid), 0
+	return components.InitWarehouse(width, height, turns, parcels, PalletTruck, trucks, grid), 0
 }
