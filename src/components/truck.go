@@ -2,7 +2,6 @@
 package components
 
 import (
-	"projectGo/src/errors"
 	"strconv"
 )
 
@@ -19,20 +18,24 @@ type Truck struct {
 
 // CreateTruck func to initialise trucks
 func CreateTruck(parts []string, trucks []Truck) []Truck {
-	ret := 0
 	x, err := strconv.Atoi(parts[1])
-	ret += errors.Check(err)
-	y, err := strconv.Atoi(parts[2])
-	ret += errors.Check(err)
-	maxLoad, err := strconv.Atoi(parts[3])
-	ret += errors.Check(err)
-	DayGone, err := strconv.Atoi(parts[4])
-	ret += errors.Check(err)
-	Status := "WAITING"
-	Load := 0
-	if ret != 0 {
+	if err != nil {
 		return trucks
 	}
+	y, err := strconv.Atoi(parts[2])
+	if err != nil {
+		return trucks
+	}
+	maxLoad, err := strconv.Atoi(parts[3])
+	if err != nil {
+		return trucks
+	}
+	DayGone, err := strconv.Atoi(parts[4])
+	if err != nil {
+		return trucks
+	}
+	Status := "WAITING"
+	Load := 0
 	t := Truck{Name: parts[0], X: x, Y: y, MaxLoad: maxLoad, DayGone: DayGone, IsGone: 0, Status: Status, CurrentLoad: Load}
 	trucks = append(trucks, t)
 	return trucks

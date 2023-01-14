@@ -2,7 +2,6 @@
 package components
 
 import (
-	"projectGo/src/errors"
 	"strconv"
 )
 
@@ -19,12 +18,12 @@ type PalletTruck struct {
 
 // CreatePallet func to init/create pallet truck
 func CreatePallet(parts []string, palletTruck []PalletTruck) []PalletTruck {
-	ret := 0
 	x, err := strconv.Atoi(parts[1])
-	ret += errors.Check(err)
+	if err != nil {
+		return palletTruck
+	}
 	y, err := strconv.Atoi(parts[2])
-	ret += errors.Check(err)
-	if ret != 0 {
+	if err != nil {
 		return palletTruck
 	}
 	p := PalletTruck{Name: parts[0], X: x, Y: y, Status: "WAIT", CurrentParcel: Parcel{}, IsCharged: false}

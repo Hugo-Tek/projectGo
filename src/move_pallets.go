@@ -47,19 +47,21 @@ func notChargedPallet(warehouse *components.Warehouse, palletTruck *components.P
 func movePalletTruck(warehouse *components.Warehouse, palletTruck *components.PalletTruck) {
 	// ICI ON RECOIT LE COLIS LE PLUS PROCHE ET LA DISTANCE
 
-	if !palletTruck.IsCharged {
+	switch {
+	case !palletTruck.IsCharged:
 		notChargedPallet(warehouse, palletTruck)
-	} else if palletTruck.IsCharged {
+	case palletTruck.IsCharged:
 		x, y, dist := components.FindClosestOne(warehouse.Grid, palletTruck.X, palletTruck.Y, 3)
 		truckToGo := components.DetectTruck(x, y, warehouse)
 		// SI IL EST A COTÉ DU CAMION
-		if dist == 1 {
+		switch dist {
+		case 1:
 			Charging(warehouse, palletTruck, truckToGo)
-		} else {
+		default:
 			// se deplacer vers le camion le plus proche.
 			MoveTo(warehouse, palletTruck, x, y)
 		}
-	} else {
+	default:
 		palletTruck.Status = "WAIT"
 	}
 }

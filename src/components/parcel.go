@@ -3,7 +3,6 @@ package components
 
 import (
 	"fmt"
-	"projectGo/src/errors"
 	"strconv"
 	"strings"
 )
@@ -17,12 +16,12 @@ type Parcel struct {
 
 // CreatePackage func to initialize/create Parcels
 func CreatePackage(parts []string, parcels []Parcel) []Parcel {
-	ret := 0
 	x, err := strconv.Atoi(parts[1])
-	ret += errors.Check(err)
+	if err != nil {
+		return parcels
+	}
 	y, err := strconv.Atoi(parts[2])
-	ret += errors.Check(err)
-	if ret != 0 {
+	if err != nil {
 		return parcels
 	}
 	color := strings.ToUpper(parts[3])

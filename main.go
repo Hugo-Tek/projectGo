@@ -7,14 +7,14 @@ import (
 	"os"
 	"projectGo/src"
 	"projectGo/src/components"
-	"projectGo/src/errors"
 )
 
 func main() {
 	// Open the file to read
 	file, err := os.Open("file.txt")
-	ret := errors.Check(err)
-	if ret == 1 {
+	if err != nil {
+		fmt.Println(err)
+		fmt.Println("😱")
 		return
 	}
 	defer file.Close()

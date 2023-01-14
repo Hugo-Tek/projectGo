@@ -4,28 +4,32 @@ package components
 import (
 	"bufio"
 	"fmt"
-	"projectGo/src/errors"
 	"strconv"
 	"strings"
 )
 
-func ParseFirstLine(scanner *bufio.Scanner) (int, int, int, int) {
+// ParseFirstLine func to parse first line
+func ParseFirstLine(scanner *bufio.Scanner) (w int, h int, t int, r int) {
 	line := scanner.Text()
 	parts := strings.Split(line, " ")
-	ret := 0
 	if len(parts) != 3 {
 		fmt.Println("Erreur de format: première ligne doit avoir 3 éléments")
-		ret = 1
-		return 0, 0, 0, ret
+		return 0, 0, 0, 1
 	}
 	width, err := strconv.Atoi(parts[0])
-	ret += errors.Check(err)
-	height, err := strconv.Atoi(parts[1])
-	ret += errors.Check(err)
-	turns, err := strconv.Atoi(parts[2])
-	ret += errors.Check(err)
-	if ret != 0 {
-		return 0, 0, 0, ret
+	if err != nil {
+		fmt.Println("Erreur de format: première ligne doit avoir 3 entiers")
+		return 0, 0, 0, 1
 	}
-	return width, height, turns, ret
+	height, err := strconv.Atoi(parts[1])
+	if err != nil {
+		fmt.Println("Erreur de format: première ligne doit avoir 3 entiers")
+		return 0, 0, 0, 1
+	}
+	turns, err := strconv.Atoi(parts[2])
+	if err != nil {
+		fmt.Println("Erreur de format: première ligne doit avoir 3 entiers")
+		return 0, 0, 0, 1
+	}
+	return width, height, turns, 0
 }

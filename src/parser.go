@@ -6,13 +6,14 @@ import (
 	"fmt"
 	"os"
 	"projectGo/src/components"
-	"projectGo/src/errors"
 	"strings"
 )
 
-func Parser(file *os.File, scanner *bufio.Scanner) (*components.Warehouse, int) {
+// Parser func to parse the parameter file
+func Parser(file *os.File, scanner *bufio.Scanner) (w *components.Warehouse, nb int) {
 	// Parse the first row (number of squares in width, number of squares in length, number of turns)
 	width, height, turns, ret := components.ParseFirstLine(scanner)
+	nb = 0
 
 	if ret == 1 {
 		fmt.Println("😱")
@@ -32,20 +33,23 @@ func Parser(file *os.File, scanner *bufio.Scanner) (*components.Warehouse, int) 
 	for scanner.Scan() {
 		line := scanner.Text()
 		parts := strings.Split(line, " ")
-		if len(parts) == 4 {
+		switch len(parts) {
+		case 4:
 			parcels = components.CreatePackage(parts, parcels)
-		} else if len(parts) == 3 {
+		case 3:
 			PalletTruck = components.CreatePallet(parts, PalletTruck)
-		} else if len(parts) == 5 {
+		case 5:
 			trucks = components.CreateTruck(parts, trucks)
-		} else {
+		default:
 			fmt.Println("Erreur de format: ligne non reconnue")
 			fmt.Println("😱")
 			return nil, 1
 		}
-		if errors.ScannerError(scanner) == 1 {
+		if err := scanner.Err(); err != nil {
+			fmt.Println(err)
+			fmt.Println("😱")
 			return nil, 1
 		}
 	}
-	return components.InitWarehouse(width, height, turns, parcels, PalletTruck, trucks, grid), 0
+	return components.InitWarehouse(width, height, turns, parcels, PalletTruck, trucks, grid), nb
 }

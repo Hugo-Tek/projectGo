@@ -5,9 +5,9 @@ import (
 	"math"
 )
 
-func FindClosestOne(slice [][]int, x3 int, y3 int, wantedNumber int) (int, int, int) {
-	minDist := math.MaxInt32
-	var closestX, closestY int
+// FindClosestOne func to find the closest one
+func FindClosestOne(slice [][]int, x3 int, y3 int, wantedNumber int) (closestX int, closestY int, minDist int) {
+	minDist = math.MaxInt32
 
 	for y2, row := range slice {
 		for x2, val := range row {

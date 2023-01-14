@@ -64,4 +64,8 @@ camion_b 3 4 4000 5
 Ensuite nous avons un dossier ```src``` où se trouve tout le code,
 séparé en 3 parties les **components** dans un dossier ```components```, la **gestion d'erreur**  dans un dossier ```errors```, et les fichiers principaux à la racine de ```src```.
 
-### 
+### Stratégie retenue
+
+La stratégie globale du projet est de gérer les tâches de transport de colis dans un entrepôt en utilisant des transpalettes et des camions. Les transpalettes sont utilisées pour ramasser les colis dans l'entrepôt et les déposer sur les camions, tandis que les camions sont utilisés pour transporter les colis vers leur destination finale. La stratégie implique également de gérer les déplacements des transpalettes et des camions de manière efficace pour minimiser les déplacements inutiles et les temps d'attente, ainsi que de gérer les capacités de chargement des camions pour s'assurer qu'ils ne sont pas surchargés. Le but final est de s'assurer que tous les colis sont livrés à leur destination finale dans les délais impartis.
+
+Notre stratégie retenue a été de rechercher en boucle les colis et camions les plus proches afin d'avoir un algorithme plus efficace. Ainsi, plusieurs transpalettes peuvent travailler en simultanée afin d'augmenter le rendement. Chaque action est effectué tour par tour pour ne pas déroger aux consignes. Grâce à tous ces efforts (transpalettes, management de l'entrepôt, efficacité des employés), nous sommes arrivés à nos objectifs.
