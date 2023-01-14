@@ -1,3 +1,4 @@
+// Package errors provides main function on errors files
 package errors
 
 import (
@@ -5,8 +6,8 @@ import (
 	"fmt"
 )
 
+// ScannerError is a function that checks if an error is nil or not during the scan of the file
 func ScannerError(scanner *bufio.Scanner) int {
-	// Vérifie qu'il n'y a pas eu d'erreur pendant la lecture du fichier
 	if err := scanner.Err(); err != nil {
 		fmt.Println(err)
 		return 1
