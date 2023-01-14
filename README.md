@@ -56,3 +56,12 @@ colère_DU_dragon 4 1 green
 transpalette_1 0 0 
 camion_b 3 4 4000 5
 ```
+
+
+### Organisations et packages
+
+À la racine nous avons le ```main.go``` avec le fichier pour l'entrée ```file.txt```.
+Ensuite nous avons un dossier ```src``` où se trouve tout le code,
+séparé en 3 parties les **components** dans un dossier ```components```, la **gestion d'erreur**  dans un dossier ```errors```, et les fichiers principaux à la racine de ```src```.
+
+### 

@@ -1,8 +1,9 @@
-5 5 20
+5 5 23
 colis_a_livrer 2 1 green
 paquet 2 2 BLUE
 deadpool 0 3 yellow
 colère_DU_dragon 4 1 green
 transpalette_1 0 2
 transpalette_2 4 2
-camion_b 3 4 200 5
+camion_b 3 4 600 5
+camion_c 0 1 1000 5
